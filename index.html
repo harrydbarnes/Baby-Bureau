@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Bureau: Top Secret Baby Intel</title>
+</head>
+<body>
+    <header>
+        <h1>Baby Bureau</h1>
+        <p>Tagline: Top Secret Baby Intel</p>
+    </header>
+
+    <main>
+        <section id="fbi">
+    <h2>FBI - Feeding Baby Intelligence</h2>
+    <div>
+        <h3>Track a Feeding</h3>
+        <button id="breastfeeding">Breastfeeding</button>
+        <button id="bottleFeeding">Bottle Feeding</button>
+        <button id="solids">Solids</button>
+    </div>
+    <div id="feedingDetails">
+        </div>
+    <script>
+        // Breastfeeding functionality
+        document.getElementById('breastfeeding').addEventListener('click', function() {
+            document.getElementById('feedingDetails').innerHTML = `
+                <p>Start Breastfeeding Timer</p>
+                <button id="startTimer">Start Timer</button>
+                <p id="timer"></p>
+                <p>Which side did you use?</p>
+                <button id="left">Left</button>
+                <button id="right">Right</button>
+                <div id="feedingLog"></div>
+            `;
+
+            let timerInterval;
+            let seconds = 0;
+            const timerDisplay = document.getElementById('timer');
+            const startTimerButton = document.getElementById('startTimer');
+            let side = '';
+
+            startTimerButton.addEventListener('click', () => {
+                if (!timerInterval) {
+                    startTimerButton.textContent = 'Stop Timer';
+                    timerInterval = setInterval(() => {
+                        seconds++;
+                        timerDisplay.textContent = \`Time: \${formatTime(seconds)}\`;
+                    }, 1000);
+                } else {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    startTimerButton.textContent = 'Start Timer';
+                }
+            });
+
+            document.getElementById('left').addEventListener('click', () => {
+                side = 'Left';
+            });
+
+            document.getElementById('right').addEventListener('click', () => {
+                side = 'Right';
+            });
+
+            document.getElementById('feedingDetails').addEventListener('click', (event) => {
+                if (event.target.id === 'left' || event.target.id === 'right') {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    startTimerButton.textContent = 'Start Timer';
+                    logFeeding('Breastfeeding', formatTime(seconds), side);
+                    seconds = 0;
+                    timerDisplay.textContent = '';
+                    side = '';
+                }
+            });
+        });
+
+        // Bottle feeding functionality
+        document.getElementById('bottleFeeding').addEventListener('click', function() {
+            document.getElementById('feedingDetails').innerHTML = `
+                <p>Enter amount of formula:</p>
+                <input type="number" id="formulaAmount"> ml
+                <button id="addBottleFeeding">Add</button>
+                <div id="feedingLog"></div>
+            `;
+
+            document.getElementById('addBottleFeeding').addEventListener('click', function() {
+                const amount = document.getElementById('formulaAmount').value;
+                if (amount) {
+                    logFeeding('Bottle Feeding', amount + ' ml');
+                    document.getElementById('formulaAmount').value = '';
+                }
+            });
+        });
+
+        // Solids functionality
+        document.getElementById('solids').addEventListener('click', function() {
+            document.getElementById('feedingDetails').innerHTML = `
+                <p>Enter type of solid food:</p>
+                <input type="text" id="solidFoodType">
+                <button id="addSolidFood">Add</button>
+                <div id="feedingLog"></div>
+            `;
+
+            document.getElementById('addSolidFood').addEventListener('click', function() {
+                const foodType = document.getElementById('solidFoodType').value;
+                if (foodType) {
+                    logFeeding('Solids', foodType);
+                    document.getElementById('solidFoodType').value = '';
+                }
+            });
+        });
+
+        // Function to format time
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            return \`\${minutes.toString().padStart(2, '0')}:\${remainingSeconds.toString().padStart(2, '0')}\`;
+        }
+
+        // Function to log the feeding
+        function logFeeding(type, details, side = '') {
+            const log = document.getElementById('feedingLog');
+            let logText = \`\${type}: \${details}\`;
+            if (side) {
+                logText += \` (Side: \${side})\`;
+            }
+            log.innerHTML += \`<p>\${logText}</p>\`;
+            document.getElementById('feedingDetails').innerHTML = '';
+        }
+    </script>
+</section>
+
+
+        <section id="cia">
+    <h2>CIA - Caca Intelligence Assistant</h2>
+    <div>
+        <h3>Track Diaper Change</h3>
+        <button id="wet">Wet</button>
+        <button id="soiled">Soiled</button>
+    </div>
+    <div id="diaperDetails">
+        </div>
+    <script>
+        // Diaper change functionality
+        document.getElementById('wet').addEventListener('click', function() {
+            document.getElementById('diaperDetails').innerHTML = `
+                <p>Diaper Type: Wet</p>
+                <p>Any notes?</p>
+                <input type="text" id="wetNotes">
+                <button id="addWet">Add</button>
+                <div id="diaperLog"></div>
+            `;
+
+            document.getElementById('addWet').addEventListener('click', function() {
+                const notes = document.getElementById('wetNotes').value;
+                logDiaperChange('Wet', notes);
+                document.getElementById('wetNotes').value = '';
+            });
+        });
+
+        document.getElementById('soiled').addEventListener('click', function() {
+            document.getElementById('diaperDetails').innerHTML = `
+                <p>Diaper Type: Soiled</p>
+                <p>Consistency:</p>
+                <select id="consistency">
+                    <option value="normal">Normal</option>
+                    <option value="loose">Loose</option>
+                    <option value="hard">Hard</option>
+                </select>
+                <p>Any notes?</p>
+                <input type="text" id="soiledNotes">
+                <button id="addSoiled">Add</button>
+                <div id="diaperLog"></div>
+            `;
+
+            document.getElementById('addSoiled').addEventListener('click', function() {
+                const notes = document.getElementById('soiledNotes').value;
+                const consistency = document.getElementById('consistency').value;
+                logDiaperChange('Soiled', \`Consistency: \${consistency}, Notes: \${notes}\`);
+                document.getElementById('soiledNotes').value = '';
+            });
+        });
+
+        // Function to log diaper changes
+        function logDiaperChange(type, details) {
+            const log = document.getElementById('diaperLog');
+            log.innerHTML += \`<p>\${type}: \${details}</p>\`;
+            document.getElementById('diaperDetails').innerHTML = '';
+        }
+    </script>
+</section>
+
+
+        <section id="sid">
+    <h2>SID - Sleeping Intelligence Division</h2>
+    <div>
+        <h3>Track Sleep</h3>
+        <button id="startSleep">Start Sleep</button>
+        <button id="endSleep" disabled>End Sleep</button>
+    </div>
+    <div id="sleepDetails">
+        </div>
+    <script>
+        // Sleep tracking functionality
+        const startSleepButton = document.getElementById('startSleep');
+        const endSleepButton = document.getElementById('endSleep');
+        const sleepDetailsDiv = document.getElementById('sleepDetails');
+
+        let sleepStart;
+        let sleepEnd;
+
+        startSleepButton.addEventListener('click', function() {
+            sleepStart = new Date();
+            startSleepButton.disabled = true;
+            endSleepButton.disabled = false;
+            sleepDetailsDiv.innerHTML = '<p>Sleep started at: ' + sleepStart.toLocaleTimeString() + '</p>';
+        });
+
+        endSleepButton.addEventListener('click', function() {
+            sleepEnd = new Date();
+            startSleepButton.disabled = false;
+            endSleepButton.disabled = true;
+            const sleepDuration = sleepEnd - sleepStart;
+            logSleep(sleepStart, sleepEnd, sleepDuration);
+            sleepStart = null;
+            sleepEnd = null;
+            sleepDetailsDiv.innerHTML = '';
+        });
+
+        function logSleep(start, end, duration) {
+            const log = document.getElementById('sleepDetails');
+            const durationInMinutes = Math.round(duration / 60000);
+            log.innerHTML += `<p>Sleep from ${start.toLocaleTimeString()} to ${end.toLocaleTimeString()} (Duration: ${durationInMinutes} minutes)</p>`;
+        }
+    </script>
+</section>
+
+    </main>
+
+    <footer>
+        <p>© 2024 Baby Bureau</p>
+    </footer>
+
+    <script>
+        // JavaScript for interactivity will be added later
+    </script>
+</body>
+</html>
