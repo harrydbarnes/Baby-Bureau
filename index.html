@@ -3,248 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baby Bureau: Top Secret Baby Intel</title>
+    <title>Baby Bureau - Top Secret Baby Intel</title>
+    <style>
+        :root {
+            --primary-color: #1a3a5f;
+            --secondary-color: #e63946;
+            --accent-color: #f1faee;
+            --dark-color: #1d3557;
+            --light-color: #a8dadc;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+        
+        .tagline {
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 0.5rem 0;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 1rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            display: block;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 3rem 1rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            border-top: 5px solid var(--primary-color);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card:nth-child(2) {
+            border-top-color: var(--secondary-color);
+        }
+        
+        .feature-card:nth-child(3) {
+            border-top-color: #ffd166;
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin: 1rem 0;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .feature-content {
+            padding: 1.5rem;
+        }
+        
+        .feature-title {
+            margin-top: 0;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .badge {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 12px;
+        }
+        
+        .cta {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #c1272d;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+        
+        .classified {
+            border: 2px dashed var(--secondary-color);
+            padding: 1rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            background-color: rgba(230, 57, 70, 0.1);
+            position: relative;
+        }
+        
+        .classified::before {
+            content: "TOP SECRET";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            padding: 0 10px;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        .testimonials {
+            background-color: #f1faee;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .testimonial-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .testimonial {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 350px;
+        }
+        
+        .agent-badge {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Baby Bureau</h1>
-        <p>Tagline: Top Secret Baby Intel</p>
+        <div class="logo-container">
+            <div class="logo">BB</div>
+            <h1>BABY BUREAU</h1>
+        </div>
+        <p class="tagline">Top Secret Baby Intel</p>
     </header>
-
-    <main>
-        <section id="fbi">
-    <h2>FBI - Feeding Baby Intelligence</h2>
-    <div>
-        <h3>Track a Feeding</h3>
-        <button id="breastfeeding">Breastfeeding</button>
-        <button id="bottleFeeding">Bottle Feeding</button>
-        <button id="solids">Solids</button>
+    
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#fbi">FBI Division</a></li>
+            <li><a href="#cia">CIA Division</a></li>
+            <li><a href="#sid">Sleep Division</a></li>
+            <li><a href="#pricing">Clearance Levels</a></li>
+            <li><a href="#contact">Contact HQ</a></li>
+        </ul>
+    </nav>
+    
+    <section class="hero">
+        <h2>Welcome to Baby Bureau</h2>
+        <p>Your covert operation for tracking and understanding your little agent's activities.</p>
+        <p>Our mission: Help parents decode their baby's patterns and establish secure routines.</p>
+    </section>
+    
+    <div class="classified">
+        <h3>Mission Briefing</h3>
+        <p>Baby Bureau provides intelligence tools for field agents (parents) to monitor, track, and predict their junior agent's activities. With our specialized divisions, you'll have all the intel you need for successful parenting operations.</p>
+        <p>Once installed, our app will send encrypted notifications known as "You need to go to the Oval Office" when an action is required - whether it's a feeding, diaper change, or sleep time.</p>
     </div>
-    <div id="feedingDetails">
+    
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-content">
+                <h3 class="feature-title">FBI <span class="badge">Feeding</span></h3>
+                <h4>Feeding Baby Intelligence</h4>
+                <p>Track every feeding mission with precise intelligence:</p>
+                <ul>
+                    <li>One-touch logging system for all feeding types</li>
+                    <li>Complete breastfeeding timer with side tracking</li>
+                    <li>Formula and solid food amount records</li>
+                    <li>Secure notes for recording reactions and preferences</li>
+                </ul>
+                <p>Our FBI division ensures no feeding detail goes undocumented in your mission to keep your agent well-nourished.</p>
+            </div>
         </div>
-    <script>
-        // Breastfeeding functionality
-        document.getElementById('breastfeeding').addEventListener('click', function() {
-            document.getElementById('feedingDetails').innerHTML = `
-                <p>Start Breastfeeding Timer</p>
-                <button id="startTimer">Start Timer</button>
-                <p id="timer"></p>
-                <p>Which side did you use?</p>
-                <button id="left">Left</button>
-                <button id="right">Right</button>
-                <div id="feedingLog"></div>
-            `;
-
-            let timerInterval;
-            let seconds = 0;
-            const timerDisplay = document.getElementById('timer');
-            const startTimerButton = document.getElementById('startTimer');
-            let side = '';
-
-            startTimerButton.addEventListener('click', () => {
-                if (!timerInterval) {
-                    startTimerButton.textContent = 'Stop Timer';
-                    timerInterval = setInterval(() => {
-                        seconds++;
-                        timerDisplay.textContent = \`Time: \${formatTime(seconds)}\`;
-                    }, 1000);
-                } else {
-                    clearInterval(timerInterval);
-                    timerInterval = null;
-                    startTimerButton.textContent = 'Start Timer';
-                }
-            });
-
-            document.getElementById('left').addEventListener('click', () => {
-                side = 'Left';
-            });
-
-            document.getElementById('right').addEventListener('click', () => {
-                side = 'Right';
-            });
-
-            document.getElementById('feedingDetails').addEventListener('click', (event) => {
-                if (event.target.id === 'left' || event.target.id === 'right') {
-                    clearInterval(timerInterval);
-                    timerInterval = null;
-                    startTimerButton.textContent = 'Start Timer';
-                    logFeeding('Breastfeeding', formatTime(seconds), side);
-                    seconds = 0;
-                    timerDisplay.textContent = '';
-                    side = '';
-                }
-            });
-        });
-
-        // Bottle feeding functionality
-        document.getElementById('bottleFeeding').addEventListener('click', function() {
-            document.getElementById('feedingDetails').innerHTML = `
-                <p>Enter amount of formula:</p>
-                <input type="number" id="formulaAmount"> ml
-                <button id="addBottleFeeding">Add</button>
-                <div id="feedingLog"></div>
-            `;
-
-            document.getElementById('addBottleFeeding').addEventListener('click', function() {
-                const amount = document.getElementById('formulaAmount').value;
-                if (amount) {
-                    logFeeding('Bottle Feeding', amount + ' ml');
-                    document.getElementById('formulaAmount').value = '';
-                }
-            });
-        });
-
-        // Solids functionality
-        document.getElementById('solids').addEventListener('click', function() {
-            document.getElementById('feedingDetails').innerHTML = `
-                <p>Enter type of solid food:</p>
-                <input type="text" id="solidFoodType">
-                <button id="addSolidFood">Add</button>
-                <div id="feedingLog"></div>
-            `;
-
-            document.getElementById('addSolidFood').addEventListener('click', function() {
-                const foodType = document.getElementById('solidFoodType').value;
-                if (foodType) {
-                    logFeeding('Solids', foodType);
-                    document.getElementById('solidFoodType').value = '';
-                }
-            });
-        });
-
-        // Function to format time
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const remainingSeconds = seconds % 60;
-            return \`\${minutes.toString().padStart(2, '0')}:\${remainingSeconds.toString().padStart(2, '0')}\`;
-        }
-
-        // Function to log the feeding
-        function logFeeding(type, details, side = '') {
-            const log = document.getElementById('feedingLog');
-            let logText = \`\${type}: \${details}\`;
-            if (side) {
-                logText += \` (Side: \${side})\`;
-            }
-            log.innerHTML += \`<p>\${logText}</p>\`;
-            document.getElementById('feedingDetails').innerHTML = '';
-        }
-    </script>
-</section>
-
-
-        <section id="cia">
-    <h2>CIA - Caca Intelligence Assistant</h2>
-    <div>
-        <h3>Track Diaper Change</h3>
-        <button id="wet">Wet</button>
-        <button id="soiled">Soiled</button>
-    </div>
-    <div id="diaperDetails">
+        
+        <div class="feature-card">
+            <div class="feature-content">
+                <h3 class="feature-title">CIA <span class="badge">Caca</span></h3>
+                <h4>Caca Intelligence Assistant</h4>
+                <p>Complete surveillance of diaper situations:</p>
+                <ul>
+                    <li>One-touch diaper activity logging</li>
+                    <li>Track type and consistency with classified codes</li>
+                    <li>Add top-secret notes for unusual observations</li>
+                    <li>Monitor hydration and digestion patterns</li>
+                </ul>
+                <p>The CIA provides critical intelligence for assessing your junior agent's health status and digestive operations.</p>
+            </div>
         </div>
-    <script>
-        // Diaper change functionality
-        document.getElementById('wet').addEventListener('click', function() {
-            document.getElementById('diaperDetails').innerHTML = `
-                <p>Diaper Type: Wet</p>
-                <p>Any notes?</p>
-                <input type="text" id="wetNotes">
-                <button id="addWet">Add</button>
-                <div id="diaperLog"></div>
-            `;
-
-            document.getElementById('addWet').addEventListener('click', function() {
-                const notes = document.getElementById('wetNotes').value;
-                logDiaperChange('Wet', notes);
-                document.getElementById('wetNotes').value = '';
-            });
-        });
-
-        document.getElementById('soiled').addEventListener('click', function() {
-            document.getElementById('diaperDetails').innerHTML = `
-                <p>Diaper Type: Soiled</p>
-                <p>Consistency:</p>
-                <select id="consistency">
-                    <option value="normal">Normal</option>
-                    <option value="loose">Loose</option>
-                    <option value="hard">Hard</option>
-                </select>
-                <p>Any notes?</p>
-                <input type="text" id="soiledNotes">
-                <button id="addSoiled">Add</button>
-                <div id="diaperLog"></div>
-            `;
-
-            document.getElementById('addSoiled').addEventListener('click', function() {
-                const notes = document.getElementById('soiledNotes').value;
-                const consistency = document.getElementById('consistency').value;
-                logDiaperChange('Soiled', \`Consistency: \${consistency}, Notes: \${notes}\`);
-                document.getElementById('soiledNotes').value = '';
-            });
-        });
-
-        // Function to log diaper changes
-        function logDiaperChange(type, details) {
-            const log = document.getElementById('diaperLog');
-            log.innerHTML += \`<p>\${type}: \${details}</p>\`;
-            document.getElementById('diaperDetails').innerHTML = '';
-        }
-    </script>
-</section>
-
-
-        <section id="sid">
-    <h2>SID - Sleeping Intelligence Division</h2>
-    <div>
-        <h3>Track Sleep</h3>
-        <button id="startSleep">Start Sleep</button>
-        <button id="endSleep" disabled>End Sleep</button>
-    </div>
-    <div id="sleepDetails">
+        
+        <div class="feature-card">
+            <div class="feature-content">
+                <h3 class="feature-title">SID <span class="badge">Sleep</span></h3>
+                <h4>Sleeping Intelligence Division</h4>
+                <p>Advanced sleep pattern analysis and prediction:</p>
+                <ul>
+                    <li>One-touch sleep session logging</li>
+                    <li>SweetSpot® sleep window predictions</li>
+                    <li>Color-coded sleep pattern visualization</li>
+                    <li>Sleep environment and wake-up mood tracking</li>
+                </ul>
+                <p>Our SID specialists help you identify optimal sleep windows for successful nap and bedtime operations.</p>
+            </div>
         </div>
-    <script>
-        // Sleep tracking functionality
-        const startSleepButton = document.getElementById('startSleep');
-        const endSleepButton = document.getElementById('endSleep');
-        const sleepDetailsDiv = document.getElementById('sleepDetails');
-
-        let sleepStart;
-        let sleepEnd;
-
-        startSleepButton.addEventListener('click', function() {
-            sleepStart = new Date();
-            startSleepButton.disabled = true;
-            endSleepButton.disabled = false;
-            sleepDetailsDiv.innerHTML = '<p>Sleep started at: ' + sleepStart.toLocaleTimeString() + '</p>';
-        });
-
-        endSleepButton.addEventListener('click', function() {
-            sleepEnd = new Date();
-            startSleepButton.disabled = false;
-            endSleepButton.disabled = true;
-            const sleepDuration = sleepEnd - sleepStart;
-            logSleep(sleepStart, sleepEnd, sleepDuration);
-            sleepStart = null;
-            sleepEnd = null;
-            sleepDetailsDiv.innerHTML = '';
-        });
-
-        function logSleep(start, end, duration) {
-            const log = document.getElementById('sleepDetails');
-            const durationInMinutes = Math.round(duration / 60000);
-            log.innerHTML += `<p>Sleep from ${start.toLocaleTimeString()} to ${end.toLocaleTimeString()} (Duration: ${durationInMinutes} minutes)</p>`;
-        }
-    </script>
-</section>
-
-    </main>
-
+    </section>
+    
+    <section class="cta">
+        <h2>Ready to Begin Your Mission?</h2>
+        <p>Join thousands of field agents successfully tracking their junior operatives.</p>
+        <a href="#download" class="btn">Download Baby Bureau</a>
+    </section>
+    
+    <section class="testimonials">
+        <h2>Field Reports</h2>
+        <div class="testimonial-container">
+            <div class="testimonial">
+                <span class="agent-badge">Agent Sarah</span>
+                <p>"The SweetSpot feature is like having a secret weapon! It's incredibly accurate at predicting when my son will be ready for a nap. This has been life-changing for our family operations."</p>
+            </div>
+            <div class="testimonial">
+                <span class="agent-badge">Agent Michael</span>
+                <p>"The multi-caregiver sync has revolutionized our parenting strategy. My wife and I can seamlessly coordinate all baby activities no matter who's on duty."</p>
+            </div>
+            <div class="testimonial">
+                <span class="agent-badge">Agent Jessica</span>
+                <p>"The FBI division has been invaluable for tracking my twins' feeding patterns. I can finally make sense of their schedules and ensure they're both getting proper nutrition."</p>
+            </div>
+        </div>
+    </section>
+    
     <footer>
-        <p>© 2024 Baby Bureau</p>
+        <p>© 2025 Baby Bureau | Top Secret Baby Intel</p>
+        <p>For authorized parent agents only.</p>
     </footer>
-
-    <script>
-        // JavaScript for interactivity will be added later
-    </script>
 </body>
 </html>
