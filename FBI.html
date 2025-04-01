@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FBI Division - Feeding Baby Intelligence | Baby Bureau</title>
+    <style>
+        :root {
+            --primary-color: #1a3a5f;
+            --secondary-color: #e63946;
+            --accent-color: #f1faee;
+            --dark-color: #1d3557;
+            --light-color: #a8dadc;
+            --fbi-color: #00264d;
+            --fbi-accent: #005cbf;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        
+        header {
+            background-color: var(--fbi-color);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: var(--fbi-color);
+            font-size: 24px;
+        }
+        
+        .tagline {
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 0.5rem 0;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 1rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            display: block;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: var(--fbi-accent);
+            color: white;
+        }
+        
+        .features {
+            padding: 3rem 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .feature-section {
+            margin-bottom: 2.5rem;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-section h3 {
+            color: var(--fbi-color);
+            border-bottom: 2px solid var(--fbi-accent);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-item {
+            background-color: #f1faee;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--fbi-accent);
+        }
+        
+        .feature-item h4 {
+            margin-top: 0;
+            color: var(--fbi-color);
+        }
+        
+        .demo {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: var(--fbi-color);
+            color: white;
+        }
+        
+        .demo-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .mockup {
+            margin-top: 2rem;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 350px;
+            margin: 2rem auto 0;
+        }
+        
+        .mockup-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        
+        .mockup-title {
+            font-weight: bold;
+            color: var(--fbi-color);
+        }
+        
+        .mockup-body {
+            padding: 1rem 0;
+        }
+        
+        .tracker-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .tracker-label {
+            color: #555;
+        }
+        
+        .tracker-value {
+            font-weight: bold;
+            color: var(--fbi-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #c1272d;
+        }
+        
+        .mockup-button {
+            background-color: var(--fbi-accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 1rem;
+            cursor: pointer;
+        }
+        
+        .classified {
+            border: 2px dashed var(--secondary-color);
+            padding: 1rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            background-color: rgba(230, 57, 70, 0.1);
+            position: relative;
+        }
+        
+        .classified::before {
+            content: "TOP SECRET";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            padding: 0 10px;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+        
+        .timer-display {
+            font-size: 24px;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        .timer-controls {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .timer-btn {
+            background-color: var(--fbi-color);
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            width: 48%;
+            cursor: pointer;
+        }
+        
+        .tips {
+            background-color: #f1faee;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-radius: 8px;
+        }
+        
+        .tips h3 {
+            color: var(--fbi-color);
+            margin-top: 0;
+        }
+        
+        .tips-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .tips-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tips-list li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">FBI</div>
+            <h1>FEEDING BABY INTELLIGENCE</h1>
+        </div>
+        <p class="tagline">Tactical Nutrition Division</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="fbi-division.html">FBI Division</a></li>
+            <li><a href="cia-division.html">CIA Division</a></li>
+            <li><a href="sid-division.html">Sleep Division</a></li>
+            <li><a href="pricing.html">Clearance Levels</a></li>
+            <li><a href="contact.html">Contact HQ</a></li>
+        </ul>
+    </nav>
+    
+    <section class="hero">
+        <h2>FBI Division Briefing</h2>
+        <p>Feeding Baby Intelligence: Your tactical advantage for monitoring nutrition</p>
+    </section>
+    
+    <div class="classified">
+        <h3>Confidential Operation Details</h3>
+        <p>The FBI Division provides comprehensive intelligence gathering on all feeding activities. Track, analyze, and optimize your agent's nutrition with our state-of-the-art monitoring tools.</p>
+        <p>When it's time for a feeding mission, you'll receive an "Oval Office" notification to alert you of the required action.</p>
+    </div>
+    
+    <section class="features">
+        <div class="feature-section">
+            <h3>One-Touch Intelligence Gathering</h3>
+            <p>Our sophisticated systems allow for rapid data collection with minimal effort - perfect for field agents handling active junior operatives.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4>Breastfeeding Operations</h4>
+                    <ul>
+                        <li>Complete timer with left/right tracking</li>
+                        <li>Duration monitoring for each side</li>
+                        <li>Pattern analysis across sessions</li>
+                        <li>Historical data retention for trend analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>Bottle Operations</h4>
+                    <ul>
+                        <li>Formula amount tracking in oz/ml</li>
+                        <li>Time stamps for all feedings</li>
+                        <li>Formula type documentation</li>
+                        <li>Temperature and preparation notes</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>Solid Food Intelligence</h4>
+                    <ul>
+                        <li>Food type categorization</li>
+                        <li>Quantity measurement</li>
+                        <li>Reaction documentation</li>
+                        <li>New food introduction tracking</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>Pumping Operations</h4>
+                    <ul>
+                        <li>Volume tracking per breast</li>
+                        <li>Session duration monitoring</li>
+                        <li>Storage inventory management</li>
+                        <li>Production trend analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="feature-section">
+            <h3>Multi-Agent Coordination</h3>
+            <p>Ensure seamless communication between all caregivers involved in feeding operations:</p>
+            <ul>
+                <li>Synchronized data across all devices</li>
+                <li>Real-time updates for all field agents</li>
+                <li>Shared notes and observations</li>
+                <li>Coordinated feeding schedules</li>
+            </ul>
+        </div>
+        
+        <div class="feature-section">
+            <h3>Intelligence Analysis</h3>
+            <p>Gain critical insights from your feeding data:</p>
+            <ul>
+                <li>Daily and weekly feeding summaries</li>
+                <li>Feeding pattern identification</li>
+                <li>Growth correlation tracking</li>
+                <li>Nutritional intake assessment</li>
+                <li>Feeding-sleep pattern relationship analysis</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section class="demo">
+        <div class="demo-content">
+            <h2>Field Operations Interface</h2>
+            <p>Experience the FBI Division's tactical feeding tracking system</p>
+            
+            <div class="mockup">
+                <div class="mockup-header">
+                    <span class="mockup-title">Breastfeeding Tracker</span>
+                    <span>🔒</span>
+                </div>
+                <div class="mockup-body">
+                    <div class="timer-display">00:12:45</div>
+                    <div class="tracker-item">
+                        <span class="tracker-label">Current Side:</span>
+                        <span class="tracker-value">Left</span>
+                    </div>
+                    <div class="tracker-item">
+                        <span class="tracker-label">Last Side:</span>
+                        <span class="tracker-value">Right (08:32)</span>
+                    </div>
+                    <div class="tracker-item">
+                        <span class="tracker-label">Session Start:</span>
+                        <span class="tracker-value">10:15 AM</span>
+                    </div>
+                    
+                    <div class="timer-controls">
+                        <button class="timer-btn">Switch Side</button>
+                        <button class="timer-btn">End Session</button>
+                    </div>
+                    
+                    <button class="mockup-button">Add Notes</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="features">
+        <div class="feature-section">
+            <h3>Oval Office Alerts</h3>
+            <p>Never miss a critical feeding window with our secure notification system:</p>
+            <ul>
+                <li>Customizable feeding interval reminders</li>
+                <li>"You need to go to the Oval Office" alerts when feeding time approaches</li>
+                <li>Scheduled feeding time notifications</li>
+                <li>Pattern-based intelligent reminders</li>
+                <li>Apple Watch and device notifications support</li>
+            </ul>
+        </div>
+        
+        <div class="tips">
+            <h3>Field Agent Tips: Optimal Feeding Intelligence</h3>
+            <ul class="tips-list">
+                <li>Log feedings immediately for the most accurate data collection</li>
+                <li>Use notes to document any unusual reactions or preferences</li>
+                <li>Track both quantity and quality of feedings for comprehensive analysis</li>
+                <li>Coordinate with all caregivers to ensure consistent data entry</li>
+                <li>Review weekly summaries to identify emerging patterns</li>
+                <li>Set up Oval Office reminders based on your baby's typical feeding schedule</li>
+                <li>Use the Apple Watch app for hands-free tracking during feeding sessions</li>
+            </ul>
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2025 Baby Bureau | FBI Division - Feeding Baby Intelligence</p>
+        <p>For authorized parent agents only. All feeding data is classified.</p>
+    </footer>
+</body>
+</html>
