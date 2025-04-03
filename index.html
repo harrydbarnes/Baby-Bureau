@@ -12,7 +12,7 @@
             --dark-color: #1d3557;
             --light-color: #a8dadc;
         }
-        
+
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -20,44 +20,45 @@
             background-color: #f9f9f9;
             color: #333;
         }
-        
+
         header {
             background-color: var(--primary-color);
             color: white;
             padding: 1rem 0;
             text-align: center;
         }
-        
+
         .logo-container {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 10px;
         }
-        
+
         .logo {
             width: 60px;
             height: 60px;
-            background-color: white;
-            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-weight: bold;
-            color: var(--primary-color);
-            font-size: 24px;
         }
-        
+
+        .logo img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 50%; /* To keep the circular shape */
+        }
+
         .tagline {
             font-style: italic;
             margin-top: 0.5rem;
         }
-        
+
         nav {
             background-color: var(--dark-color);
             padding: 0.5rem 0;
         }
-        
+
         nav ul {
             list-style-type: none;
             margin: 0;
@@ -66,11 +67,11 @@
             justify-content: center;
             flex-wrap: wrap;
         }
-        
+
         nav li {
             margin: 0 1rem;
         }
-        
+
         nav a {
             color: white;
             text-decoration: none;
@@ -79,18 +80,18 @@
             border-radius: 4px;
             transition: background-color 0.3s;
         }
-        
+
         nav a:hover {
             background-color: var(--secondary-color);
         }
-        
+
         .hero {
             text-align: center;
             padding: 3rem 1rem;
             background-color: var(--light-color);
             color: var(--dark-color);
         }
-        
+
         .features {
             display: flex;
             flex-wrap: wrap;
@@ -98,7 +99,7 @@
             gap: 2rem;
             padding: 3rem 1rem;
         }
-        
+
         .feature-card {
             background-color: white;
             border-radius: 8px;
@@ -108,30 +109,30 @@
             transition: transform 0.3s;
             border-top: 5px solid var(--primary-color);
         }
-        
+
         .feature-card:hover {
             transform: translateY(-5px);
         }
-        
+
         .feature-card:nth-child(2) {
             border-top-color: var(--secondary-color);
         }
-        
+
         .feature-card:nth-child(3) {
             border-top-color: #ffd166;
         }
-        
+
         .feature-icon {
             font-size: 48px;
             margin: 1rem 0;
             color: var(--primary-color);
             text-align: center;
         }
-        
+
         .feature-content {
             padding: 1.5rem;
         }
-        
+
         .feature-title {
             margin-top: 0;
             color: var(--primary-color);
@@ -140,7 +141,7 @@
             justify-content: center;
             gap: 10px;
         }
-        
+
         .badge {
             background-color: var(--primary-color);
             color: white;
@@ -148,14 +149,14 @@
             padding: 3px 8px;
             border-radius: 12px;
         }
-        
+
         .cta {
             text-align: center;
             padding: 3rem 1rem;
             background-color: var(--primary-color);
             color: white;
         }
-        
+
         .btn {
             display: inline-block;
             background-color: var(--secondary-color);
@@ -167,11 +168,11 @@
             margin-top: 1rem;
             transition: background-color 0.3s;
         }
-        
+
         .btn:hover {
             background-color: #c1272d;
         }
-        
+
         footer {
             background-color: var(--dark-color);
             color: white;
@@ -179,7 +180,7 @@
             padding: 1.5rem 0;
             margin-top: 2rem;
         }
-        
+
         .classified {
             border: 2px dashed var(--secondary-color);
             padding: 1rem;
@@ -188,7 +189,7 @@
             background-color: rgba(230, 57, 70, 0.1);
             position: relative;
         }
-        
+
         .classified::before {
             content: "TOP SECRET";
             position: absolute;
@@ -200,13 +201,13 @@
             color: var(--secondary-color);
             font-weight: bold;
         }
-        
+
         .testimonials {
             background-color: #f1faee;
             padding: 3rem 1rem;
             text-align: center;
         }
-        
+
         .testimonial-container {
             display: flex;
             flex-wrap: wrap;
@@ -214,7 +215,7 @@
             gap: 2rem;
             margin-top: 2rem;
         }
-        
+
         .testimonial {
             background-color: white;
             padding: 1.5rem;
@@ -222,7 +223,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 350px;
         }
-        
+
         .agent-badge {
             display: inline-block;
             background-color: var(--primary-color);
@@ -237,12 +238,14 @@
 <body>
     <header>
         <div class="logo-container">
-            <div class="logo">BB</div>
+            <div class="logo">
+                <img src="/media/bb-logo.png" alt="Baby Bureau Logo">
+            </div>
             <h1>BABY BUREAU</h1>
         </div>
         <p class="tagline">Top Secret Baby Intel</p>
     </header>
-    
+
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -253,19 +256,19 @@
             <li><a href="contact.html">Contact HQ</a></li>
         </ul>
     </nav>
-    
+
     <section class="hero">
         <h2>Welcome to Baby Bureau</h2>
         <p>Your covert operation for tracking and understanding your little agent's activities.</p>
         <p>Our mission: Help parents decode their baby's patterns and establish secure routines.</p>
     </section>
-    
+
     <div class="classified">
         <h3>Mission Briefing</h3>
         <p>Baby Bureau provides intelligence tools for field agents (parents) to monitor, track, and predict their junior agent's activities. With our specialized divisions, you'll have all the intel you need for successful parenting operations.</p>
         <p>Once installed, our app will send encrypted notifications known as "You need to go to the Oval Office" when an action is required - whether it's a feeding, diaper change, or sleep time.</p>
     </div>
-    
+
     <section class="features">
         <div class="feature-card">
             <div class="feature-content">
@@ -281,7 +284,7 @@
                 <p>Our FBI division ensures no feeding detail goes undocumented in your mission to keep your agent well-nourished.</p>
             </div>
         </div>
-        
+
         <div class="feature-card">
             <div class="feature-content">
                 <h3 class="feature-title">CIA <span class="badge">Caca</span></h3>
@@ -296,7 +299,7 @@
                 <p>The CIA provides critical intelligence for assessing your junior agent's health status and digestive operations.</p>
             </div>
         </div>
-        
+
         <div class="feature-card">
             <div class="feature-content">
                 <h3 class="feature-title">SID <span class="badge">Sleep</span></h3>
@@ -312,13 +315,13 @@
             </div>
         </div>
     </section>
-    
+
     <section class="cta">
         <h2>Ready to Begin Your Mission?</h2>
         <p>Join thousands of field agents successfully tracking their junior operatives.</p>
         <a href="#download" class="btn">Download Baby Bureau</a>
     </section>
-    
+
     <section class="testimonials">
         <h2>Field Reports</h2>
         <div class="testimonial-container">
@@ -336,7 +339,7 @@
             </div>
         </div>
     </section>
-    
+
     <footer>
         <p>© 2025 Baby Bureau | Top Secret Baby Intel</p>
         <p>For authorized parent agents only.</p>
