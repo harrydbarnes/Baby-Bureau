@@ -352,23 +352,28 @@
         <p>For authorized parent agents only.</p>
     </footer>
 
-    <script>
+<script>
         document.addEventListener('DOMContentLoaded', () => {
             const searchInput = document.getElementById('searchInput');
             const filterButtons = document.querySelectorAll('.tip-filter-menu .filter-btn');
             const tipsContainer = document.getElementById('tipsContainer');
-            const sections = tipsContainer.querySelectorAll('.tips-section');
+            const sections = tipsContainer.querySelectorAll('.tips-section'); // Correctly query within tipsContainer
+            const allButton = document.querySelector('.tip-filter-menu .filter-btn[data-filter="all"]');
 
+            // Central function to update visibility based on current state
             function updateDisplayedTips() {
-                const searchTerm = searchInput.value.toLowerCase();
+                const searchTerm = searchInput.value.toLowerCase().trim();
                 const activeFilterButton = document.querySelector('.tip-filter-menu .filter-btn.active');
+                // Fallback to 'all' if no button is somehow active.
                 const activeCategory = activeFilterButton ? activeFilterButton.dataset.filter : 'all';
 
                 sections.forEach(section => {
                     const sectionId = section.id;
+                    // Check if section matches current category filter
                     let matchesCategory = (activeCategory === 'all' || sectionId === activeCategory);
                     
-                    let matchesSearch = true; 
+                    // Check if section content matches search term
+                    let matchesSearch = true; // Assume matches if search is empty
                     if (searchTerm !== "") {
                         const h3 = section.querySelector('h3');
                         const listItems = section.querySelectorAll('li');
@@ -379,6 +384,7 @@
                         matchesSearch = textContent.includes(searchTerm);
                     }
 
+                    // Show section if it matches both the category (or 'all') and the search term (if any)
                     if (matchesCategory && matchesSearch) {
                         section.classList.remove('hidden');
                     } else {
@@ -386,23 +392,48 @@
                     }
                 });
             }
+            
+            // Helper to manage active state of filter buttons
+            function setActiveButton(buttonToActivate) {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                if (buttonToActivate) {
+                    buttonToActivate.classList.add('active');
+                }
+            }
 
+            // Event listeners for filter buttons
             filterButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
+                    setActiveButton(this);
+                    // When a filter button is clicked, the search term (if present)
+                    // will now filter within this newly selected category.
                     updateDisplayedTips();
                 });
             });
 
+            // Event listener for search input
             if (searchInput) {
-                searchInput.addEventListener('keyup', updateDisplayedTips);
+                searchInput.addEventListener('input', function() { // Using 'input' for better responsiveness
+                    if (this.value.trim() !== "") {
+                        // User is typing in search box.
+                        // If "Show All" isn't already the active button, make it active.
+                        // This ensures the updateDisplayedTips function uses 'all' as activeCategory,
+                        // so the search query applies globally.
+                        const currentActiveButton = document.querySelector('.tip-filter-menu .filter-btn.active');
+                        if (currentActiveButton !== allButton) {
+                            setActiveButton(allButton);
+                        }
+                    }
+                    // If search box is cleared (value is empty), 
+                    // the currently active button (which would be "Show All" if search had text,
+                    // or a specific category if user clicked it after clearing search) dictates the view.
+                    updateDisplayedTips();
+                });
             }
 
-            // Set "Show All" as active initially and display tips
-            const allButton = document.querySelector('.tip-filter-menu .filter-btn[data-filter="all"]');
+            // Initial setup: Activate "Show All" and display tips
             if (allButton) {
-                allButton.classList.add('active');
+                setActiveButton(allButton);
             }
             updateDisplayedTips(); 
         });
