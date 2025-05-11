@@ -111,23 +111,36 @@
             font-size: 1rem;
         }
 
-        .selector-container {
+        .tip-filter-menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem; /* Spacing between buttons */
             margin-bottom: 2rem;
-            text-align: center;
+            padding: 0.5rem;
         }
 
-        .selector-container label {
-            font-weight: bold;
-            margin-right: 0.5rem;
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
             color: var(--primary-color);
+            background-color: var(--accent-color);
+            border: 1px solid var(--light-color);
+            border-radius: 20px; /* More rounded corners */
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            font-weight: 500;
         }
 
-        .selector-container select {
-            padding: 0.75rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1rem;
-            background-color: white;
+        .filter-btn:hover {
+            background-color: var(--light-color);
+            border-color: var(--primary-color);
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
         }
 
         .tips-section {
@@ -193,136 +206,142 @@
 
     <main class="main-content">
         <div class="search-container">
-            <input type="text" id="searchInput" onkeyup="filterTips()" placeholder="Search for tips...">
+            <input type="text" id="searchInput" placeholder="Search all tips...">
         </div>
 
-        <div class="selector-container">
-            <label for="tipSelector">Select a Category:</label>
-            <select id="tipSelector" onchange="showSelectedSection()">
-                <option value="all">Show All</option>
-                <option value="key-purchases">Key Purchases</option>
-                <option value="hospital-bag">Hospital Bag</option>
-                <option value="nursery">Nursery</option>
-                <option value="signs-of-labour">Signs of Labour</option>
-                <option value="birth-pain-relief">Birth Pain Relief Menu</option>
-                <option value="interventions-list">Interventions List</option>
-                <option value="nappy-changing">Nappy Changing</option>
-                <option value="bathing">Bathing</option>
-                <option value="feeding">Feeding</option>
-                <option value="sleeping">Sleeping</option>
-                <option value="cpr">CPR</option>
-                <option value="choking">Choking</option>
-                <option value="first-few-days">First Few Days at Home</option>
-            </select>
+        <div class="tip-filter-menu">
+            <button class="filter-btn" data-filter="all">Show All</button>
+            <button class="filter-btn" data-filter="key-purchases">Key Purchases</button>
+            <button class="filter-btn" data-filter="hospital-bag">Hospital Bag</button>
+            <button class="filter-btn" data-filter="nursery">Nursery</button>
+            <button class="filter-btn" data-filter="signs-of-labour">Signs of Labour</button>
+            <button class="filter-btn" data-filter="birth-pain-relief">Birth Pain Relief</button>
+            <button class="filter-btn" data-filter="interventions-list">Interventions</button>
+            <button class="filter-btn" data-filter="nappy-changing">Nappy Changing</button>
+            <button class="filter-btn" data-filter="bathing">Bathing</button>
+            <button class="filter-btn" data-filter="feeding">Feeding</button>
+            <button class="filter-btn" data-filter="sleeping">Sleeping</button>
+            <button class="filter-btn" data-filter="cpr">CPR</button>
+            <button class="filter-btn" data-filter="choking">Choking</button>
+            <button class="filter-btn" data-filter="first-few-days">First Few Days</button>
         </div>
 
         <div id="tipsContainer">
             <section id="key-purchases" class="tips-section">
                 <h3>Key Purchases</h3>
                 <ul>
-                    <li>Tip 1 for Key Purchases...</li>
-                    <li>Tip 2 for Key Purchases...</li>
-                    <li>Tip 3 for Key Purchases...</li>
+                    <li>Tip 1 for Key Purchases: A safe car seat is non-negotiable.</li>
+                    <li>Tip 2 for Key Purchases: Consider a versatile pushchair system.</li>
+                    <li>Tip 3 for Key Purchases: You'll need more muslins than you think!</li>
                 </ul>
             </section>
 
             <section id="hospital-bag" class="tips-section">
                 <h3>Hospital Bag</h3>
                 <ul>
-                    <li>Tip 1 for Hospital Bag...</li>
-                    <li>Tip 2 for Hospital Bag...</li>
+                    <li>Pack for yourself: comfy clothes, toiletries, snacks, phone charger.</li>
+                    <li>Pack for baby: a few outfits, nappies, wipes, a blanket.</li>
+                    <li>Don't forget your maternity notes!</li>
                 </ul>
             </section>
 
             <section id="nursery" class="tips-section">
                 <h3>Nursery</h3>
                 <ul>
-                    <li>Tip 1 for Nursery Setup...</li>
-                    <li>Tip 2 for Nursery Essentials...</li>
+                    <li>Ensure a safe sleeping space (cot or Moses basket).</li>
+                    <li>Good storage solutions for nappies, clothes, and toys.</li>
+                    <li>A comfortable feeding chair can be a lifesaver.</li>
                 </ul>
             </section>
 
             <section id="signs-of-labour" class="tips-section">
                 <h3>Signs of Labour</h3>
                 <ul>
-                    <li>Recognizing early signs...</li>
-                    <li>When to call the midwife/hospital...</li>
+                    <li>Contractions becoming regular, stronger, and closer together.</li>
+                    <li>A "show" (mucus plug dislodging).</li>
+                    <li>Waters breaking (can be a gush or a trickle).</li>
                 </ul>
             </section>
 
             <section id="birth-pain-relief" class="tips-section">
                 <h3>Birth Pain Relief Menu</h3>
                 <ul>
-                    <li>Natural pain relief options...</li>
-                    <li>Medical pain relief options...</li>
+                    <li>Non-medical: breathing techniques, movement, water birth, TENS machine.</li>
+                    <li>Medical: gas and air (Entonox), pethidine, epidural.</li>
+                    <li>Discuss options with your midwife beforehand.</li>
                 </ul>
             </section>
 
             <section id="interventions-list" class="tips-section">
                 <h3>Interventions List</h3>
                 <ul>
-                    <li>Common interventions during labour...</li>
-                    <li>Questions to ask about interventions...</li>
+                    <li>Induction of labour.</li>
+                    <li>Assisted delivery (forceps or ventouse).</li>
+                    <li>Caesarean section.</li>
+                    <li>Always ask for benefits, risks, and alternatives (BRAIN).</li>
                 </ul>
             </section>
 
             <section id="nappy-changing" class="tips-section">
                 <h3>Nappy Changing</h3>
                 <ul>
-                    <li>Step-by-step guide...</li>
-                    <li>Tips for preventing nappy rash...</li>
+                    <li>Have everything ready before you start: clean nappy, wipes, cream.</li>
+                    <li>Always wipe front to back for girls.</li>
+                    <li>Frequent changes help prevent nappy rash.</li>
                 </ul>
             </section>
 
             <section id="bathing" class="tips-section">
                 <h3>Bathing</h3>
                 <ul>
-                    <li>How to bathe a newborn safely...</li>
-                    <li>Water temperature and frequency...</li>
+                    <li>Ensure water is warm, not hot (test with elbow or thermometer).</li>
+                    <li>Support baby's head and neck securely.</li>
+                    <li>Have a warm towel ready. You don't need to bathe a newborn daily.</li>
                 </ul>
             </section>
 
             <section id="feeding" class="tips-section">
                 <h3>Feeding</h3>
                 <ul>
-                    <li>Breastfeeding tips...</li>
-                    <li>Bottle feeding tips...</li>
-                    <li>Recognizing hunger cues...</li>
+                    <li>Breastfeeding: ensure a good latch, feed on demand. Seek support if needed.</li>
+                    <li>Bottle feeding: follow formula instructions carefully, sterilise equipment.</li>
+                    <li>Look for feeding cues: rooting, sucking fists, restlessness.</li>
                 </ul>
             </section>
 
             <section id="sleeping" class="tips-section">
                 <h3>Sleeping</h3>
                 <ul>
-                    <li>Safe sleep guidelines (e.g., SIDS prevention)...</li>
-                    <li>Establishing a sleep routine...</li>
+                    <li>Place baby on their back to sleep in a clear cot or Moses basket.</li>
+                    <li>Keep baby's head uncovered and room temperature comfortable (16-20°C).</li>
+                    <li>Avoid smoking around your baby.</li>
                 </ul>
             </section>
 
             <section id="cpr" class="tips-section">
                 <h3>CPR (Cardiopulmonary Resuscitation) for Infants</h3>
                 <ul>
-                    <li>Basic steps for infant CPR...</li>
-                    <li>When to perform CPR...</li>
-                    <li><em>Important: Seek certified training for CPR.</em></li>
+                    <li>If an infant is unresponsive and not breathing normally, call emergency services immediately.</li>
+                    <li>Basic infant CPR involves cycles of 30 chest compressions and 2 rescue breaths.</li>
+                    <li><em>Crucial: Attend a certified infant first aid course to learn these life-saving skills properly.</em></li>
                 </ul>
             </section>
 
             <section id="choking" class="tips-section">
                 <h3>Choking - Infant First Aid</h3>
                 <ul>
-                    <li>Recognizing signs of choking...</li>
-                    <li>First aid for a choking infant...</li>
-                     <li><em>Important: Seek certified training for first aid.</em></li>
+                    <li>If an infant is choking (unable to cry or cough effectively), act immediately.</li>
+                    <li>Deliver up to 5 back blows, followed by up to 5 chest thrusts if needed.</li>
+                    <li><em>Crucial: Attend a certified infant first aid course to learn how to respond to choking.</em></li>
                 </ul>
             </section>
 
             <section id="first-few-days" class="tips-section">
                 <h3>First Few Days at Home</h3>
                 <ul>
-                    <li>What to expect...</li>
-                    <li>Self-care for parents...</li>
-                    <li>When to seek help...</li>
+                    <li>Rest when baby rests. Don't try to do too much.</li>
+                    <li>Accept help from friends and family.</li>
+                    <li>Monitor baby's feeding, wet/dirty nappies, and general well-being. Contact your midwife or GP if concerned.</li>
                 </ul>
             </section>
         </div>
@@ -334,56 +353,58 @@
     </footer>
 
     <script>
-        function showSelectedSection() {
-            const selector = document.getElementById('tipSelector');
-            const selectedValue = selector.value;
-            const allSections = document.querySelectorAll('.tips-section');
-
-            allSections.forEach(section => {
-                if (selectedValue === 'all' || section.id === selectedValue) {
-                    section.classList.remove('hidden');
-                } else {
-                    section.classList.add('hidden');
-                }
-            });
-        }
-
-        function filterTips() {
-            const input = document.getElementById('searchInput');
-            const filter = input.value.toLowerCase();
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const filterButtons = document.querySelectorAll('.tip-filter-menu .filter-btn');
             const tipsContainer = document.getElementById('tipsContainer');
-            const sections = tipsContainer.getElementsByClassName('tips-section');
-            const selector = document.getElementById('tipSelector');
+            const sections = tipsContainer.querySelectorAll('.tips-section');
 
-            // If search is active, ensure selector is on "Show All" effectively
-            // or manage visibility based on both search and selection.
-            // For simplicity, this filter will show matching sections regardless of dropdown.
-            // You might want to refine this interaction.
+            function updateDisplayedTips() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const activeFilterButton = document.querySelector('.tip-filter-menu .filter-btn.active');
+                const activeCategory = activeFilterButton ? activeFilterButton.dataset.filter : 'all';
 
-            for (let i = 0; i < sections.length; i++) {
-                const h3 = sections[i].getElementsByTagName('h3')[0];
-                const listItems = sections[i].getElementsByTagName('li');
-                let textContent = h3.textContent || h3.innerText;
+                sections.forEach(section => {
+                    const sectionId = section.id;
+                    let matchesCategory = (activeCategory === 'all' || sectionId === activeCategory);
+                    
+                    let matchesSearch = true; 
+                    if (searchTerm !== "") {
+                        const h3 = section.querySelector('h3');
+                        const listItems = section.querySelectorAll('li');
+                        let textContent = h3 ? h3.textContent.toLowerCase() : '';
+                        listItems.forEach(li => {
+                            textContent += ' ' + li.textContent.toLowerCase();
+                        });
+                        matchesSearch = textContent.includes(searchTerm);
+                    }
 
-                for (let j = 0; j < listItems.length; j++) {
-                    textContent += listItems[j].textContent || listItems[j].innerText;
-                }
-
-                if (textContent.toLowerCase().indexOf(filter) > -1) {
-                    sections[i].classList.remove('hidden');
-                } else {
-                    sections[i].classList.add('hidden');
-                }
+                    if (matchesCategory && matchesSearch) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
             }
-            // If search input is cleared, revert to selector's state
-            if (filter === "") {
-                showSelectedSection();
-            }
-        }
 
-        // Initial call to display sections based on selector (default "Show All")
-        document.addEventListener('DOMContentLoaded', function() {
-            showSelectedSection();
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    updateDisplayedTips();
+                });
+            });
+
+            if (searchInput) {
+                searchInput.addEventListener('keyup', updateDisplayedTips);
+            }
+
+            // Set "Show All" as active initially and display tips
+            const allButton = document.querySelector('.tip-filter-menu .filter-btn[data-filter="all"]');
+            if (allButton) {
+                allButton.classList.add('active');
+            }
+            updateDisplayedTips(); 
         });
     </script>
 </body>
