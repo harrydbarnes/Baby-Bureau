@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Tips - Baby Bureau</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="media/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="media/favicon-16x16.png">
+    <link rel="manifest" href="media/site.webmanifest">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+        :root {
+            --primary-color: #1a3a5f;
+            --secondary-color: #e63946;
+            --accent-color: #f1faee;
+            --dark-color: #1d3557;
+            --light-color: #a8dadc;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 50%;
+        }
+
+        .tagline {
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        nav {
+            background-color: var(--dark-color);
+            padding: 0.5rem 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            display: block;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .main-content {
+            padding: 2rem 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .search-container {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-container input[type="text"] {
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 500px;
+            font-size: 1rem;
+        }
+
+        .selector-container {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .selector-container label {
+            font-weight: bold;
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .selector-container select {
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            background-color: white;
+        }
+
+        .tips-section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+        
+        .tips-section.hidden {
+            display: none;
+        }
+
+        .tips-section h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--light-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        .tips-section ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .tips-section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <img src="/Baby-Bureau/media/bb-logo.png" alt="Baby Bureau Logo">
+            </div>
+            <h1>Baby Bureau</h1>
+        </div>
+        <p class="tagline">Top Secret Baby Intel</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="top-tips.html">Top Tips</a></li>
+            <li><a href="FBI.html">FBI Division</a></li>
+            <li><a href="CIA.html">CIA Division</a></li>
+            <li><a href="nap-ops.html">Nap Ops</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="contact.html">Contact HQ</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="search-container">
+            <input type="text" id="searchInput" onkeyup="filterTips()" placeholder="Search for tips...">
+        </div>
+
+        <div class="selector-container">
+            <label for="tipSelector">Select a Category:</label>
+            <select id="tipSelector" onchange="showSelectedSection()">
+                <option value="all">Show All</option>
+                <option value="key-purchases">Key Purchases</option>
+                <option value="hospital-bag">Hospital Bag</option>
+                <option value="nursery">Nursery</option>
+                <option value="signs-of-labour">Signs of Labour</option>
+                <option value="birth-pain-relief">Birth Pain Relief Menu</option>
+                <option value="interventions-list">Interventions List</option>
+                <option value="nappy-changing">Nappy Changing</option>
+                <option value="bathing">Bathing</option>
+                <option value="feeding">Feeding</option>
+                <option value="sleeping">Sleeping</option>
+                <option value="cpr">CPR</option>
+                <option value="choking">Choking</option>
+                <option value="first-few-days">First Few Days at Home</option>
+            </select>
+        </div>
+
+        <div id="tipsContainer">
+            <section id="key-purchases" class="tips-section">
+                <h3>Key Purchases</h3>
+                <ul>
+                    <li>Tip 1 for Key Purchases...</li>
+                    <li>Tip 2 for Key Purchases...</li>
+                    <li>Tip 3 for Key Purchases...</li>
+                </ul>
+            </section>
+
+            <section id="hospital-bag" class="tips-section">
+                <h3>Hospital Bag</h3>
+                <ul>
+                    <li>Tip 1 for Hospital Bag...</li>
+                    <li>Tip 2 for Hospital Bag...</li>
+                </ul>
+            </section>
+
+            <section id="nursery" class="tips-section">
+                <h3>Nursery</h3>
+                <ul>
+                    <li>Tip 1 for Nursery Setup...</li>
+                    <li>Tip 2 for Nursery Essentials...</li>
+                </ul>
+            </section>
+
+            <section id="signs-of-labour" class="tips-section">
+                <h3>Signs of Labour</h3>
+                <ul>
+                    <li>Recognizing early signs...</li>
+                    <li>When to call the midwife/hospital...</li>
+                </ul>
+            </section>
+
+            <section id="birth-pain-relief" class="tips-section">
+                <h3>Birth Pain Relief Menu</h3>
+                <ul>
+                    <li>Natural pain relief options...</li>
+                    <li>Medical pain relief options...</li>
+                </ul>
+            </section>
+
+            <section id="interventions-list" class="tips-section">
+                <h3>Interventions List</h3>
+                <ul>
+                    <li>Common interventions during labour...</li>
+                    <li>Questions to ask about interventions...</li>
+                </ul>
+            </section>
+
+            <section id="nappy-changing" class="tips-section">
+                <h3>Nappy Changing</h3>
+                <ul>
+                    <li>Step-by-step guide...</li>
+                    <li>Tips for preventing nappy rash...</li>
+                </ul>
+            </section>
+
+            <section id="bathing" class="tips-section">
+                <h3>Bathing</h3>
+                <ul>
+                    <li>How to bathe a newborn safely...</li>
+                    <li>Water temperature and frequency...</li>
+                </ul>
+            </section>
+
+            <section id="feeding" class="tips-section">
+                <h3>Feeding</h3>
+                <ul>
+                    <li>Breastfeeding tips...</li>
+                    <li>Bottle feeding tips...</li>
+                    <li>Recognizing hunger cues...</li>
+                </ul>
+            </section>
+
+            <section id="sleeping" class="tips-section">
+                <h3>Sleeping</h3>
+                <ul>
+                    <li>Safe sleep guidelines (e.g., SIDS prevention)...</li>
+                    <li>Establishing a sleep routine...</li>
+                </ul>
+            </section>
+
+            <section id="cpr" class="tips-section">
+                <h3>CPR (Cardiopulmonary Resuscitation) for Infants</h3>
+                <ul>
+                    <li>Basic steps for infant CPR...</li>
+                    <li>When to perform CPR...</li>
+                    <li><em>Important: Seek certified training for CPR.</em></li>
+                </ul>
+            </section>
+
+            <section id="choking" class="tips-section">
+                <h3>Choking - Infant First Aid</h3>
+                <ul>
+                    <li>Recognizing signs of choking...</li>
+                    <li>First aid for a choking infant...</li>
+                     <li><em>Important: Seek certified training for first aid.</em></li>
+                </ul>
+            </section>
+
+            <section id="first-few-days" class="tips-section">
+                <h3>First Few Days at Home</h3>
+                <ul>
+                    <li>What to expect...</li>
+                    <li>Self-care for parents...</li>
+                    <li>When to seek help...</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Baby Bureau | Top Secret Baby Intel</p>
+        <p>For authorized parent agents only.</p>
+    </footer>
+
+    <script>
+        function showSelectedSection() {
+            const selector = document.getElementById('tipSelector');
+            const selectedValue = selector.value;
+            const allSections = document.querySelectorAll('.tips-section');
+
+            allSections.forEach(section => {
+                if (selectedValue === 'all' || section.id === selectedValue) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+        }
+
+        function filterTips() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const tipsContainer = document.getElementById('tipsContainer');
+            const sections = tipsContainer.getElementsByClassName('tips-section');
+            const selector = document.getElementById('tipSelector');
+
+            // If search is active, ensure selector is on "Show All" effectively
+            // or manage visibility based on both search and selection.
+            // For simplicity, this filter will show matching sections regardless of dropdown.
+            // You might want to refine this interaction.
+
+            for (let i = 0; i < sections.length; i++) {
+                const h3 = sections[i].getElementsByTagName('h3')[0];
+                const listItems = sections[i].getElementsByTagName('li');
+                let textContent = h3.textContent || h3.innerText;
+
+                for (let j = 0; j < listItems.length; j++) {
+                    textContent += listItems[j].textContent || listItems[j].innerText;
+                }
+
+                if (textContent.toLowerCase().indexOf(filter) > -1) {
+                    sections[i].classList.remove('hidden');
+                } else {
+                    sections[i].classList.add('hidden');
+                }
+            }
+            // If search input is cleared, revert to selector's state
+            if (filter === "") {
+                showSelectedSection();
+            }
+        }
+
+        // Initial call to display sections based on selector (default "Show All")
+        document.addEventListener('DOMContentLoaded', function() {
+            showSelectedSection();
+        });
+    </script>
+</body>
+</html>
